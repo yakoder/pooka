@@ -449,7 +449,6 @@ public class FolderDisplayPanel extends JPanel {
     
     // on 1.3, the window may not be validated yet when we first want
     // to make the selection visible.  so we have a workaround.
-    /*
     if (!validated) {
       String javaVersion = System.getProperty("java.version");
       
@@ -457,7 +456,6 @@ public class FolderDisplayPanel extends JPanel {
 	scrollToRowOnValidate = rowNumber;
       }
     }
-    */
   }
   
   /**
@@ -468,7 +466,6 @@ public class FolderDisplayPanel extends JPanel {
   public void validate() {
     super.validate();
     
-    /*
     if (! validated) {
       validated = true;
       if (scrollToRowOnValidate != -1) {
@@ -476,7 +473,6 @@ public class FolderDisplayPanel extends JPanel {
 	scrollToRowOnValidate = -1;
       }
     }
-    */
   }
 
   

@@ -1,24 +1,3 @@
-
-network on AWTEventThread:
-
-        at com.sun.mail.imap.IMAPMessage.getFlags(IMAPMessage.java:704)
-        - locked <0x462522d0> (a com.sun.mail.imap.IMAPMessage)
-        at net.suberic.pooka.UIDMimeMessage.getFlags(UIDMimeMessage.java:380)
-        - locked <0x44f481f0> (a net.suberic.pooka.UIDMimeMessage)
-        at net.suberic.pooka.MessageInfo.getFlags(MessageInfo.java:87)
-        at net.suberic.pooka.gui.FolderDisplayPanel.getNextSelectableMessage(FolderDisplayPanel.java:536)
-        at net.suberic.pooka.gui.FolderDisplayPanel.getNextSelectableMessage(FolderDisplayPanel.java:516)
-        at net.suberic.pooka.gui.FolderDisplayPanel.selectNextMessage(FolderDisplayPanel.java:489)
-        at net.suberic.pooka.gui.FolderInternalFrame.selectNextMessage(FolderInternalFrame.java:316)
-        at net.suberic.pooka.gui.FolderDisplayPanel$7.actionPerformed(FolderDisplayPanel.java:372)
-        at javax.swing.JComponent$ActionStandin.actionPerformed(JComponent.java:2863)
-        at javax.swing.SwingUtilities.notifyAction(SwingUtilities.java:1512)
-        at javax.swing.JComponent.processKeyBinding(JComponent.java:2435)
-        at javax.swing.JTable.processKeyBinding(JTable.java:3254)
-        at javax.swing.JComponent.processKeyBindings(JComponent.java:2470)
-        at javax.swing.JComponent.processKeyEvent(JComponent.java:2398)
-
-
 *) -- windows --
   *) support windows registry attachment associations.
 	-- check icemail
@@ -129,21 +108,10 @@ preview:
 +++ version 1.1 +++++++++++++++ 
 
 *) add support for jdk1.4
-	-- new printing system.
-	-- new focus architecture
-	-- new keybinding architecture
-	-- NetworkInterface classes
-	-- regexp?
-	-- InputVerifier
-
-*) 1.4.1_01 bugs
-	  -- down arrow fairly consistently doesn't work when you type in a 
-	     line and then hit it.  hitting up, left, right resets it.
-	-- keybindings aren't right; open a message.  ^D it.  try to select
-	another message in the message list. -- worked around for the most
-	part.
-
-*) add a keybinding to bring up the address book selector.
+	-- tabbing between the address components for New Messages
+	-- the MailFileSystemView doesn't seem to work at all (!)
+	-- up and down arrows while composing new messages.
+	-- ssl doesn't work.
 
 *) add support for other mail formats, like maildir (and maybe hotmail?).
 	shift pop3 backing from mbox to maildir.

@@ -200,12 +200,7 @@ public class FolderFileWrapper extends File {
    * Returns the Folder's name.
    */
   public String getName() {
-    String name = folder.getName();
-    if (name == null || name.length() < 1) {
-      // this is probably a store.
-      return path;
-    }
-    return name;
+    return folder.getName();
   }
   
   /**
@@ -222,10 +217,7 @@ public class FolderFileWrapper extends File {
    * This returns the parent Folder as a FolderFileWrapper.
    */
   public File getParentFile() {
-    if (parent != null)
-      return parent;
-    else
-      return this;
+    return parent;
   }
   
   /**
@@ -624,7 +616,7 @@ public class FolderFileWrapper extends File {
     
   }
   
-  FolderFileWrapper getChildFile(String filename) {
+  private FolderFileWrapper getChildFile(String filename) {
     if (Pooka.isDebug())
       System.out.println("calling getChildFile on " + getName() + " with filename " + filename);
     

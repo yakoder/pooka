@@ -3,7 +3,7 @@ package net.suberic.pooka.ssl;
 import java.io.*;
 
 import java.security.cert.*;
-import javax.net.ssl.*;
+import com.sun.net.ssl.*;
 
 
 /**
@@ -38,51 +38,33 @@ public class PookaTrustManager implements X509TrustManager {
    * Returns whether or not the client with the given certificates is
    * trusted or not.
    */
-  public void checkClientTrusted(X509Certificate[] cert, String authType) throws CertificateException {
+  public boolean isClientTrusted(X509Certificate[] cert) {
     if (wrappedManager != null) {
-      CertificateException trustException = null;
-      try {
-	wrappedManager.checkClientTrusted(cert, authType);
-      } catch (CertificateException e) {
-	trustException = e;
-      }
-      if (trustException != null) {
-	if (localIsTrusted(cert))
-	  return;
-	else
-	  throw trustException;
-      }
+      boolean defaultResponse = wrappedManager.isClientTrusted(cert);
+      if (defaultResponse)
+	return defaultResponse;
     }
     // if the respones from the wrappedManager was false, or if there is no
     // wrappedManager, then check out local db.
-    else if (! localIsTrusted(cert))
-      throw new CertificateException("Certificate not trusted.");
+
+    return localIsTrusted(cert);
   }
 
   /**
    * Returns whether or not the server with the given certificates is
    * trusted or not.
    */
-  public void checkServerTrusted(X509Certificate[] cert, String authType) throws CertificateException {
+  public boolean isServerTrusted(X509Certificate[] cert) {
     if (wrappedManager != null) {
-      CertificateException trustException = null;
-      try {
-	wrappedManager.checkServerTrusted(cert, authType);
-      }
-      catch (CertificateException e) {
-	trustException = e;
-      }
-      
-      if (trustException != null) {
+      boolean defaultResponse = wrappedManager.isServerTrusted(cert);
+      if (defaultResponse)
+	return defaultResponse;
+      else {
 	// if this isn't acceptable by default, ask.
-	if (localIsTrusted(cert))
-	  return;
-	else
-	  throw trustException;
+	return localIsTrusted(cert);
       }
     } else
-      if (! localIsTrusted(cert))
-	throw new CertificateException("Certificate not trusted.");
+      return localIsTrusted(cert);
   }
 
   /**

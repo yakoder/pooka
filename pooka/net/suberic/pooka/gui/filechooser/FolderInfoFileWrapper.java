@@ -233,7 +233,7 @@ public class FolderInfoFileWrapper extends File {
     if (parent != null)
       return parent.getAbsolutePath();
     else
-      return this.getAbsolutePath();
+      return null;
   }
   
   /**
@@ -584,7 +584,7 @@ public class FolderInfoFileWrapper extends File {
     
   }
   
-  FolderInfoFileWrapper getChildFile(String filename) {
+  private FolderInfoFileWrapper getChildFile(String filename) {
     if (Pooka.isDebug())
       System.out.println("calling getChildFile on " + getName() + " with filename " + filename);
     

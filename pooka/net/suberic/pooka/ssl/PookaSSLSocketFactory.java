@@ -8,7 +8,7 @@ import java.security.KeyStore;
 import java.io.File;
 import java.io.FileInputStream;
 
-import javax.net.ssl.*;
+import com.sun.net.ssl.*;
 
 import net.suberic.pooka.Pooka;
 
@@ -40,10 +40,7 @@ public class PookaSSLSocketFactory extends SSLSocketFactory {
       
       defaultKeyStore.load(new FileInputStream(library_file), passwd.toCharArray());
 
-      KeyManagerFactory kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-      kmf.init(defaultKeyStore, passwd.toCharArray());
-
-      KeyManager[] keyManagers = kmf.getKeyManagers();
+      KeyManager[] keyManagers = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm()).getKeyManagers();
 
       TrustManagerFactory tmFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
       tmFactory.init(defaultKeyStore);
